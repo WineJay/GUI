@@ -82,24 +82,26 @@ class Converter():
         self.answer_error.config(fg="#004C99", font=("Arial", 13, "bold"))
         self.temp_entry.config(bg="#FFFFFF")
 
-        has_error = f"Enter a number more than / equal to {min_temp}"
-        has_errors = "no"
+        error = f"Enter a number more than / equal to {min_temp}"
+        # has_error = "no"
 
         # checks that the amount to be converted is a number above the absolute zero
         try:
             to_convert = float(to_convert)
             if to_convert >= min_temp:
-                has_error = ""
+                has_error = "no"
                 self.convert(min_temp, to_convert)
             else:
-                has_error = "Too Low!"
+                has_error = "yes"
+                error = "Too Low!"
 
         except ValueError:
-            has_error = "Please enter a number!"
+            has_error = "yes"
+            error = "Please enter a number!"
 
         # display the error if necessary
         if has_error == "yes":
-            self.answer_error.config(text=has_error, fg="#9C0000", font=("Arial", 10, "bold"))
+            self.answer_error.config(text=error, fg="#9C0000", font=("Arial", 10, "bold"))
             self.temp_entry.config(bg="#f4CCCC")
             self.temp_entry.delete(0, END)
 
@@ -117,7 +119,8 @@ class Converter():
         else:
             answer = cr.to_celsius(to_convert)
             answer_statement = f"{to_convert} °F is {answer}°C"
-
+        # enable history export button as soon as we have a valid calculation
+        self.to_history_button.config(state=NORMAL)
         self.answer_error.config(text=answer_statement)
         self.all_calculation_list.append(answer_statement)
         print(self.all_calculation_list)
