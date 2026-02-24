@@ -1,0 +1,10 @@
+**** Temperature Calculations ****
+Generated: 25/02/2026
+
+Here is your calculation history (oldest to newest)...
+-273.0°C is -459°F
+-459.0 °F is -273°C
+0.0 °F is -18°C
+0.0°C is 32°F
+25.0°C is 77°F
+25.0 °F is -4°C
